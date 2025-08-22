@@ -28,9 +28,10 @@ def new_directory(path):
         os.makedirs(path)
 
 
-GEMINI_API_KEYS = model_config["gemini"]
-# Create an infinite key cycle
-gemini_key_cycle = itertools.cycle(GEMINI_API_KEYS)
+GEMINI_API_KEYS = model_config.get("gemini")
+if GEMINI_API_KEYS is not None:
+    # Create an infinite key cycle
+    gemini_key_cycle = itertools.cycle(GEMINI_API_KEYS)
 
 
 def write_response(results, data_list, output_path):
