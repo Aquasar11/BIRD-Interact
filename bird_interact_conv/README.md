@@ -163,5 +163,38 @@ The `prompts.py` file contains templates and prompts used for:
 ### Results
 Results from conversation runs are stored in the `results/` directory.
 
+## FAQ
+
+### Q: Which model variable is used for user simulation?
+
+**A:** The `US_model_name` variable is used for user simulation. In the `run_gpt.sh` script, you can see that `call_api.py` is called with `--model_name ${US_model_name}` for both "User Simulator Step 1" and "User Simulator Step 2". The `system_model_name` is used for the system agent that generates clarifying questions and SQL queries.
+
+### Q: What are the output files in the results directory?
+
+**A:** The results directory contains several types of files generated during the conversation and evaluation process:
+
+#### System and User Interaction Files
+
+* **`system_interaction_prompt.jsonl`**: Complete prompts sent to the system model at each turn
+* **`system_interaction_response.jsonl`**: Raw JSON responses from the system model API
+* **`system_interaction.jsonl`**: Main log file for the system's conversation history and SQL generation
+* **`user_1_interaction_prompt.jsonl`**: Prompts for user simulator's encoder step (deciding how to answer)
+* **`user_1_interaction_response.jsonl`**: Raw API responses from user simulator's encoder
+* **`user_1_interaction.jsonl`**: Log file containing the "action" decided by user simulator's encoder
+* **`user_2_interaction_prompt.jsonl`**: Prompts for user simulator's decoder step (generating natural language)
+* **`user_2_interaction_response.jsonl`**: Raw API responses from user simulator's decoder
+* **`user_2_interaction.jsonl`**: Log file containing final natural language responses from user simulator
+
+#### SQL and Evaluation Files
+
+* **`sql_results.jsonl`**: First SQL query extracted after initial ambiguity resolution
+* **`sql_results_output_with_status.jsonl`**: Evaluation results with success/failure status and error messages
+* **`sql_results_debug.jsonl`**: Corrected SQL query from debugging phase (if first attempt failed)
+* **`sql_results_debug_output_with_status.jsonl`**: Evaluation results for debugged SQL query
+* **`sql_results_fu.jsonl`**: SQL query generated for follow-up question phase
+* **`sql_results_fu_output_with_status.jsonl`**: Evaluation results for follow-up SQL query
+* **`sql_results_fu_debug.jsonl`**: Corrected SQL query for follow-up question debugging
+* **`sql_results_fu_debug_output_with_status.jsonl`**: Final evaluation results for debugged follow-up SQL
+
 
 
