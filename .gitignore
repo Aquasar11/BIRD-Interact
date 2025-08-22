@@ -5,3 +5,4 @@ bird_interact_agent/postgre_table_dumps/
 bird_interact_agent/data/
 data/
 evaluation/postgre_table_dumps/
+bird_interact_conv/results/
