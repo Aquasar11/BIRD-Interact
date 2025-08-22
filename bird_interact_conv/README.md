@@ -81,8 +81,22 @@ bird_interact_conv/
 mkdir data
 cd data
 git clone https://huggingface.co/datasets/birdsql/bird-interact-lite
-# Combine with GT fields (contact us for access) into bird_interact_data.jsonl
 ```
+
+After cloning the data repository, follow these steps to prepare the dataset:
+
+1. Copy the JSON file containing the GT fields into the `bird-interact-lite` directory
+2. Run the merge script to combine the datasets:
+   ```bash
+   cd .. # Go back to the root directory
+   python merge_datasets.py
+   ```
+3. Verify the merge was successful:
+   ```bash
+   python verify_merge.py
+   ```
+
+This process will create a unified JSONL file with GT fields that combines the original dataset with the ground truth information. Once verification is complete, you can proceed with the rest of the instructions.
 
 ### 2. Environment Setup
 
